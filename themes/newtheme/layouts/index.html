@@ -1,3 +1,8 @@
+{{/* For the home page, we manually control the dark mode via the dark: classes in Tailwind. */}}
+{{- define "body-classes" -}}
+  nightwind-prevent-block
+{{- end -}}
+
 {{ define "header" }}
   {{ partial "hero.html" . }}
   {{ partial "boxes-small-news.html" . }}
