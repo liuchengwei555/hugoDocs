@@ -1,7 +1,6 @@
 ---
 title: .Scratch
 description: Acts as a "scratchpad" to store and manipulate data.
-godocref:
 date: 2017-02-01
 publishdate: 2017-02-01
 lastmod: 2017-02-01
@@ -43,7 +42,7 @@ Since Hugo 0.43, there are two different ways of using Scratch:
 
 #### The local `newScratch`
 
-{{< new-in "0.43.0" >}} A Scratch instance can also be assigned to any variable using the `newScratch` function. In this case, no Page or Shortcode context is required and the scope of the scratch is only local. The methods detailed below are available from the variable the Scratch instance was assigned to.
+{{< new-in "0.43" >}} A Scratch instance can also be assigned to any variable using the `newScratch` function. In this case, no Page or Shortcode context is required and the scope of the scratch is only local. The methods detailed below are available from the variable the Scratch instance was assigned to.
 
 ```go-html-template
 {{ $data := newScratch }}
@@ -114,6 +113,18 @@ Takes a `key`, `mapKey` and `value` and adds a map of `mapKey` and `value` to th
 {{ $scratch.Get "greetings" }} > map[french:Bonjour english:Hello]
 ```
 
+#### .DeleteInMap
+Takes a `key` and `mapKey` and removes the map of `mapKey` from the given `key`.
+
+```go-html-template
+{{ .Scratch.SetInMap "greetings" "english" "Hello" }}
+{{ .Scratch.SetInMap "greetings" "french" "Bonjour" }}
+----
+{{ .Scratch.DeleteInMap "greetings" "english" }}
+----
+{{ .Scratch.Get "greetings" }} > map[french:Bonjour]
+```
+
 #### .GetSortedMapValues
 
 Return an array of values from `key` sorted by `mapKey`.
@@ -127,7 +138,7 @@ Return an array of values from `key` sorted by `mapKey`.
 
 #### .Delete
 
-{{< new-in "0.38.0" >}} Remove the given key.
+{{< new-in "0.38" >}} Remove the given key.
 
 ```go-html-template
 {{ $scratch.Set "greeting" "Hello" }}
